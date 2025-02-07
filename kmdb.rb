@@ -175,6 +175,7 @@ for actor in ["Heath Ledger", "Aaron Eckhart", "Maggie Gyllenhaal"]
     actor_ids[actor] = new_actor.id
 end
 
+new_role = Role.new
 new_role.character_name = 'Bruce Wayne'
 new_role.movie_id = movie_ids['The Dark Knight']
 new_role.actor_id = actor_ids['Christian Bale']
@@ -212,6 +213,7 @@ for actor in ["Tom Hardy", "Joseph Gordon-Levitt", "Anne Hathaway"]
     actor_ids[actor] = new_actor.id
 end
 
+new_role = Role.new
 new_role.character_name = 'Bruce Wayne'
 new_role.movie_id = movie_ids['The Dark Knight Rises']
 new_role.actor_id = actor_ids['Christian Bale']
@@ -249,7 +251,8 @@ puts ""
 # TODO!
 
 for movie in Movie.all
-    puts "#{movie.title}, #{movie.year_released}, #{movie.rated}, #{movie.studio.name}"
+    studio = Studio.find_by('id' => movie.studio_id)
+    puts "#{movie.title}     #{movie.year_released}      #{movie.rated}      #{studio.name}"
 end
 
 # Prints a header for the cast output
@@ -261,3 +264,8 @@ puts ""
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
 
+for role in Role.all
+    movie = Movie.find_by('id' => role.movie_id)
+    actor = Actor.find_by('id' => role.actor_id)
+    puts "#{movie.title}     #{actor.name}      #{role.character_name}"
+end
