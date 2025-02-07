@@ -74,16 +74,67 @@
 # The Dark Knight Rises  Anne Hathaway         Selina Kyle
 
 # Delete existing data, so you'll start fresh each time this script is run.
-Model.destroy_all
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
 # TODO!
 
 # Generate models and tables, according to the domain model.
 # TODO!
-#DONE IN TERMINAL 
+#DONE IN TERMINAL - APM
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
+# add studio
+new_studio = Studio.new 
+new_studio.name = 'Warner Brothers'
+new_studio.save
+
+# add movies
+Warner_Bros = Studio.find_by({"name" => "Warner Brothers"})
+
+new_movie = Movie.new
+new_movie.title = 'Batman Begins'
+new_movie.year_released = 2005
+new_movie.rated = 'PG-13'
+new_movie.studio_id = Warner_Bros.id
+new_movie.save
+
+new_movie = Movie.new
+new_movie.title = 'The Dark Knight'
+new_movie.year_released = 2008
+new_movie.rated = 'PG-13'
+new_movie.studio_id = Warner_Bros.id
+new_movie.save
+
+new_movie = Movie.new
+new_movie.title = 'The Dark Knight Rises'
+new_movie.year_released = 2012
+new_movie.rated = 'PG-13'
+new_movie.studio_id = Warner_Bros.id
+new_movie.save
+
+# add actors & roles for Batman Begins
+
+actor_ids = {}
+
+for actor in ["Christian Bale", "Michael Caine", "Liam Neeson", "Katie Holmes", "Gary Oldman"]
+    new_actor = Actor.new
+    new_actor.name = actor
+    new_actor.save
+    actor_ids[actor] = new_actor.id
+end
+
+Batman_Begins = Movie.find_by({"title" => "Batman Begins"})
+
+new_role = Role.new
+new_role.character_name = 'Bruce Wayne'
+new_role.movie_id = Batman_Begins.id
+new_role.actor_id = 
+new_role.save
 
 # Prints a header for the movies output
 puts "Movies"
