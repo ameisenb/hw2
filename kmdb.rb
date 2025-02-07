@@ -117,6 +117,13 @@ new_movie.rated = 'PG-13'
 new_movie.studio_id = Warner_Bros.id
 new_movie.save
 
+movie_ids = {}
+
+for movie in ["Batman Begins", "The Dark Knight", "The Dark Knight Rises"]
+    found_movie = Movie.find_by({"title" => movie})
+    movie_ids[movie] = found_movie.id
+end
+
 # add actors & roles for Batman Begins
 
 actor_ids = {}
@@ -128,12 +135,109 @@ for actor in ["Christian Bale", "Michael Caine", "Liam Neeson", "Katie Holmes", 
     actor_ids[actor] = new_actor.id
 end
 
-Batman_Begins = Movie.find_by({"title" => "Batman Begins"})
-
 new_role = Role.new
 new_role.character_name = 'Bruce Wayne'
-new_role.movie_id = Batman_Begins.id
-new_role.actor_id = 
+new_role.movie_id = movie_ids['Batman Begins']
+new_role.actor_id = actor_ids['Christian Bale']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = 'Alfred'
+new_role.movie_id = movie_ids['Batman Begins']
+new_role.actor_id = actor_ids['Michael Caine']
+new_role.save
+
+
+new_role = Role.new
+new_role.character_name = "Ra's Al Ghoul"
+new_role.movie_id = movie_ids['Batman Begins']
+new_role.actor_id = actor_ids['Liam Neeson']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = "Rachel Dawes"
+new_role.movie_id = movie_ids['Batman Begins']
+new_role.actor_id = actor_ids['Katie Holmes']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = "Commissioner Gordon"
+new_role.movie_id = movie_ids['Batman Begins']
+new_role.actor_id = actor_ids['Gary Oldman']
+new_role.save
+
+# add actors and roles for The Dark Knight
+
+for actor in ["Heath Ledger", "Aaron Eckhart", "Maggie Gyllenhaal"]
+    new_actor = Actor.new
+    new_actor.name = actor
+    new_actor.save
+    actor_ids[actor] = new_actor.id
+end
+
+new_role.character_name = 'Bruce Wayne'
+new_role.movie_id = movie_ids['The Dark Knight']
+new_role.actor_id = actor_ids['Christian Bale']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = 'Joker'
+new_role.movie_id = movie_ids['The Dark Knight']
+new_role.actor_id = actor_ids['Heath Ledger']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = 'Harvey Dent'
+new_role.movie_id = movie_ids['The Dark Knight']
+new_role.actor_id = actor_ids['Aaron Eckhart']
+new_role.save
+new_role = Role.new
+new_role.character_name = 'Alfred'
+new_role.movie_id = movie_ids['The Dark Knight']
+new_role.actor_id = actor_ids['Michael Caine']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = "Rachel Dawes"
+new_role.movie_id = movie_ids['The Dark Knight']
+new_role.actor_id = actor_ids['Maggie Gyllenhaal']
+new_role.save
+
+# add actors and roles for The Dark Knight Rises
+
+for actor in ["Tom Hardy", "Joseph Gordon-Levitt", "Anne Hathaway"]
+    new_actor = Actor.new
+    new_actor.name = actor
+    new_actor.save
+    actor_ids[actor] = new_actor.id
+end
+
+new_role.character_name = 'Bruce Wayne'
+new_role.movie_id = movie_ids['The Dark Knight Rises']
+new_role.actor_id = actor_ids['Christian Bale']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = 'Commissioner Gordon'
+new_role.movie_id = movie_ids['The Dark Knight Rises']
+new_role.actor_id = actor_ids['Gary Oldman']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = 'Bane'
+new_role.movie_id = movie_ids['The Dark Knight Rises']
+new_role.actor_id = actor_ids['Tom Hardy']
+new_role.save
+new_role = Role.new
+new_role.character_name = 'John Blake'
+new_role.movie_id = movie_ids['The Dark Knight Rises']
+new_role.actor_id = actor_ids['Joseph Gordon-Levitt']
+new_role.save
+
+new_role = Role.new
+new_role.character_name = "Selina Kyle"
+new_role.movie_id = movie_ids['The Dark Knight Rises']
+new_role.actor_id = actor_ids['Anne Hathaway']
 new_role.save
 
 # Prints a header for the movies output
